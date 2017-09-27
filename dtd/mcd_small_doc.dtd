@@ -1,0 +1,13 @@
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT identifiant (#PCDATA)>
+<!ELEMENT mcd_small (entite, entite+, association)>
+<!ELEMENT entite (nom, attribut)>
+<!ELEMENT attribut (identifiant*,nom)>
+<!ELEMENT association (nom,attribut, role)>
+<!ELEMENT role (identifiant+)>
+<!ATTLIST nom cardinaliteMin (0|1) #IMPLIED>
+<!ATTLIST nom cardinaliteMax (1|N) #IMPLIED>
+<!ATTLIST identifiant cardinaliteMin (0|1) #IMPLIED>
+<!ATTLIST identifiant cardinaliteMax (1|N) #IMPLIED>
+<!ATTLIST identifiant role CDATA #IMPLIED>
+<!ATTLIST mcd_small xmlns CDATA #IMPLIED>

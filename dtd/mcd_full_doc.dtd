@@ -1,0 +1,19 @@
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT identifiant (#PCDATA)>
+<!ELEMENT parent (#PCDATA)>
+<!ELEMENT fils (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT mcd_full (entite+, association+, heritage*)>
+<!ELEMENT entite (nom, attribut)>
+<!ELEMENT multi-val (nom, attribut)>
+<!ELEMENT attribut (identifiant*,nom*, multi-val*)>
+<!ELEMENT association (nom,attribut*,role)>
+<!ELEMENT role (identifiant+)>
+<!ELEMENT heritage (parent,fils+,type?)>
+<!ATTLIST nom cardinaliteMin (0|1) #IMPLIED>
+<!ATTLIST nom cardinaliteMax (1|N) #IMPLIED>
+<!ATTLIST identifiant cardinaliteMin (0|1) #IMPLIED>
+<!ATTLIST identifiant cardinaliteMax (1|N) #IMPLIED>
+<!ATTLIST identifiant role CDATA #IMPLIED>
+<!ATTLIST identifiant entite CDATA #IMPLIED>
+<!ATTLIST mcd_full xmlns CDATA #IMPLIED>

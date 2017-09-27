@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mcd_full SYSTEM "../dtd/mcd_full_doc.dtd">
+<mcd_full xmlns="/ns/mcd_full">
+	<entite>
+		<nom>local</nom>
+		<attribut>
+			<identifiant>nom</identifiant>
+			<nom cardinaliteMin="0" cardinaliteMax="1">taille</nom>
+		</attribut>
+	</entite>
+	<entite>
+		<nom>objet</nom>
+		<attribut>
+			<identifiant>id</identifiant>
+			<nom cardinaliteMin="0" cardinaliteMax="1">acquisition</nom>
+		</attribut>
+	</entite>
+	<entite>
+		<nom>livre</nom>
+		<attribut>
+			<nom>isbn</nom>
+			<nom>titre</nom>
+		</attribut>
+	</entite>
+	<entite>
+		<nom>film</nom>
+		<attribut>
+			<nom>titre</nom>
+			<nom cardinaliteMin="0" cardinaliteMax="1">support</nom>
+			<nom cardinaliteMin="0" cardinaliteMax="1">duree</nom>
+		</attribut>
+	</entite>
+	<entite>
+		<nom>copie</nom>
+		<attribut>
+			<identifiant>num</identifiant>
+			<nom>audio</nom>
+			<nom>sous-titre</nom>
+		</attribut>
+	</entite>
+	<entite>
+		<nom>personne</nom>
+		<attribut>
+			<identifiant>nom</identifiant>
+			<nom cardinaliteMin="1" cardinaliteMax="N">prénom</nom>
+			<multi-val>
+				<nom>adresse</nom>
+				<attribut>
+					<nom>rue</nom>
+					<nom>ville</nom>
+					<nom>code_postal</nom>
+				</attribut>
+			</multi-val>
+			<multi-val>
+				<nom cardinaliteMin="1" cardinaliteMax="N">comptes</nom>
+				<attribut>
+					<nom>bic</nom>
+					<nom>iban</nom>
+				</attribut>
+			</multi-val>
+		</attribut>
+	</entite>
+	<association>
+		<nom>se_trouve_dans</nom>
+		<role>
+			<identifiant cardinaliteMin="0" cardinaliteMax="N">nom</identifiant>
+			<identifiant cardinaliteMin="1" cardinaliteMax="1" role="habitant">id</identifiant>
+		</role>
+	</association>
+	<association>
+		<nom>est_la_copie_de</nom>
+		<role>
+			<identifiant cardinaliteMin="1" cardinaliteMax="1" entite="copie">num</identifiant>
+			<identifiant cardinaliteMin="0" cardinaliteMax="N" entite="film">id</identifiant>
+		</role>
+	</association>
+	<association>
+		<nom>a_realisé</nom>
+		<role>
+			<identifiant cardinaliteMin="1" cardinaliteMax="N" entite="film">id</identifiant>
+			<identifiant cardinaliteMin="0" cardinaliteMax="N" role="réalisateur" entite="personne">nom</identifiant>
+		</role>
+	</association>
+	<association>
+		<nom>a_écrit</nom>
+		<attribut>
+			<nom cardinaliteMin="0" cardinaliteMax="1">quand</nom>
+		</attribut>
+		<role>
+			<identifiant cardinaliteMin="0" cardinaliteMax="N" role="auteur" entite="personne">nom</identifiant>
+			<identifiant cardinaliteMin="1" cardinaliteMax="N" entite="livre">id</identifiant>
+		</role>
+	</association>
+	<heritage>
+		<parent>objet</parent>
+		<fils>film</fils>
+		<fils>livre</fils>
+		<type>P</type>
+	</heritage>
+</mcd_full>

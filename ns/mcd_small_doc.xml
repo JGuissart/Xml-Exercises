@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mcd_small SYSTEM "../dtd/mcd_small_doc.dtd">
+<mcd_small xmlns="/ns/mcd_small">
+    <entite>
+        <nom>ville</nom>
+        <attribut>
+            <identifiant>nom</identifiant>
+            <nom>population</nom>
+        </attribut>	
+    </entite>
+    <entite>
+        <nom >personne</nom>
+        <attribut>
+            <identifiant>nom</identifiant>
+            <nom cardinaliteMin="0" cardinaliteMax="1">naissance</nom>
+        </attribut>
+    </entite>
+    <association>
+        <nom>habite</nom>
+        <attribut>
+            <nom>depuis</nom>
+         </attribut>
+        <role>
+            <identifiant cardinaliteMin="0" cardinaliteMax="N">nom</identifiant>
+            <identifiant cardinaliteMin="1" cardinaliteMax="N" role="habitant">nom</identifiant>
+        </role>
+    </association>
+</mcd_small>
+

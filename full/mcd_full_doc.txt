@@ -1,0 +1,98 @@
+mcd_full [xmlns = '/ns/mcd_full'](
+        entite(
+  nom(local)
+  attribut(
+  identifiant(nom)
+  nom [cardinaliteMin = '0'] [cardinaliteMax = '1'](taille)
+  )
+  )
+  entite(
+  nom(objet)
+  attribut(
+  identifiant(id)
+  nom [cardinaliteMin = '0'] [cardinaliteMax = '1'](acquisition)
+  )
+  )
+  entite(
+  nom(livre)
+  attribut(
+  nom(isbn)
+  nom(titre)
+  )
+  )
+  entite(
+  nom(film)
+  attribut(
+  nom(titre)
+  nom [cardinaliteMin = '0'] [cardinaliteMax = '1'](support)
+  nom [cardinaliteMin = '0'] [cardinaliteMax = '1'](duree)
+  )
+  )
+  entite(
+  nom(copie)
+  attribut(
+  identifiant(num)
+  nom(audio)
+  nom(sous-titre)
+  )
+  )
+  entite(
+  nom(personne)
+  attribut(
+  identifiant(nom)
+  nom [cardinaliteMin = '1'] [cardinaliteMax = 'N'](prénom)
+  multi-val(
+  nom(adresse)
+  attribut(
+  nom(rue)
+  nom(ville)
+  nom(code_postal)
+  )
+  )
+  multi-val(
+  nom [cardinaliteMin = '1'] [cardinaliteMax = 'N'](comptes)
+  attribut(
+  nom(bic)
+  nom(iban)
+  )
+  )
+  )
+  )
+  association(
+  nom(se_trouve_dans)
+  role(
+  identifiant [cardinaliteMin = '0'] [cardinaliteMax = 'N'](nom)
+  identifiant [cardinaliteMin = '1'] [cardinaliteMax = '1'] [role = 'habitant'](id)
+  )
+  )
+  association(
+  nom(est_la_copie_de)
+  role(
+          identifiant [cardinaliteMin = '1'] [cardinaliteMax = '1'] [entite = 'copie'](num)
+  identifiant [cardinaliteMin = '0'] [cardinaliteMax = 'N'] [entite = 'film'](id)
+  )
+  )
+  association(
+  nom(a_realisé)
+  role(
+  identifiant [cardinaliteMin = '1'] [cardinaliteMax = 'N'] [entite = 'film'](id)
+  identifiant [cardinaliteMin = '0'] [cardinaliteMax = 'N'] [role = 'réalisateur'] [entite = 'personne'](nom)
+  )
+  )
+  association(
+  nom(a_écrit)
+  attribut(
+  nom [cardinaliteMin = '0'] [cardinaliteMax = '1'](quand)
+  )
+  role(
+  identifiant [cardinaliteMin = '0'] [cardinaliteMax = 'N'] [role = 'auteur'] [entite = 'personne'](nom)
+  identifiant [cardinaliteMin = '1'] [cardinaliteMax = 'N'] [entite = 'livre'](id)
+  )
+  )
+  heritage(
+  parent(objet)
+  fils(film)
+  fils(livre)
+  type(P)
+  )
+  )
